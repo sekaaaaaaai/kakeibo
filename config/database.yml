@@ -7,7 +7,7 @@ default: &default
   username: tVsZDfR7U2vWp2P.root
   password: <%= Rails.application.credentials.dig(:database, :password) %>
   ssl_mode: verify_identity
-  sslca: /etc/ssl/cert.pem
+  sslca: <%= File.exist?("/etc/ssl/certs/ca-certificates.crt") ? "/etc/ssl/certs/ca-certificates.crt" : "/etc/ssl/cert.pem" %>
 
 development:
   <<: *default
