@@ -6,6 +6,11 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
+
+# Ignore local editor / OS artifacts.
+/.ruby-lsp
+.DS_Store
 
 # Ignore all environment files.
 /.env*
@@ -33,3 +38,5 @@
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Ignore local Kamal secrets.
+/.kamal/secrets
