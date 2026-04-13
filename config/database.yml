@@ -1,0 +1,28 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  max_connections: 5
+  host: gateway01.ap-northeast-1.prod.aws.tidbcloud.com
+  port: 4000
+  username: tVsZDfR7U2vWp2P.root
+  password: <%= Rails.application.credentials.dig(:database, :password) %>
+  ssl_mode: verify_identity
+  sslca: /etc/ssl/cert.pem
+
+development:
+  <<: *default
+  database: kakeibo_development
+
+production:
+  primary: &primary_production
+    <<: *default
+    database: kakeibo_development
+  cache:
+    <<: *primary_production
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *primary_production
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *primary_production
+    migrations_paths: db/cable_migrate
